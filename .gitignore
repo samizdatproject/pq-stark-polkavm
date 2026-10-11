@@ -1,0 +1,8 @@
+target/
+scripts/node_modules/
+scripts/package-lock.json
+
+# local assistant tooling, never committed
+CLAUDE.md
+.claude/
+.omc/

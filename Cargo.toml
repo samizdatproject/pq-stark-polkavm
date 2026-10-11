@@ -1,0 +1,20 @@
+[workspace]
+resolver = "3"
+members = ["air", "contract", "host"]
+default-members = ["air", "host"]
+
+[workspace.package]
+edition = "2024"
+license = "MIT OR Apache-2.0"
+
+[workspace.dependencies]
+winter-air = { version = "0.13.1", default-features = false }
+winter-crypto = { version = "0.13.1", default-features = false }
+winter-math = { version = "0.13.1", default-features = false }
+winter-verifier = { version = "0.13.1", default-features = false }
+winter-prover = { version = "0.13.1", default-features = false }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1

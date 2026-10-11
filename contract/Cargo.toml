@@ -1,0 +1,15 @@
+[package]
+name = "contract"
+version = "0.1.0"
+edition = "2021" # polkavm-derive 0.30 rejects 2024-style #[unsafe(no_mangle)]
+license.workspace = true
+
+[[bin]]
+name = "stark-verifier"
+path = "src/main.rs"
+
+[dependencies]
+air = { path = "../air" }
+winter-verifier.workspace = true
+uapi = { package = "pallet-revive-uapi", version = "0.13.0", default-features = false }
+polkavm-derive = "0.30.0"
