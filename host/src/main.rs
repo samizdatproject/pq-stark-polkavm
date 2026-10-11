@@ -128,7 +128,10 @@ fn prove(log2_steps: usize, queries: usize, blowup: usize, grinding: u32, out: &
     let t = Instant::now();
     let proof = FibProver(options).prove(trace).expect("proving failed");
     let prove_ms = t.elapsed().as_millis();
+    // Conjectured: ethSTARK Conjecture 1 (classical). Proven: Winterfell's list-decoding /
+    // unique-decoding bounds (eprint 2024/1553). Neither accounts for quantum adversaries.
     let security = proof.conjectured_security::<air::Hasher>().bits();
+    let proven = proof.proven_security::<air::Hasher>();
 
     // Sanity check with the native verifier before handing the proof to the contract.
     winter_verifier::verify::<FibAir, air::Hasher, air::RandomCoin, air::VectorCommitment>(
@@ -143,7 +146,9 @@ fn prove(log2_steps: usize, queries: usize, blowup: usize, grinding: u32, out: &
     fs::write(out, &calldata).unwrap();
     println!(
         "steps=2^{log2_steps} queries={queries} blowup={blowup} grinding={grinding} \
-         security={security}bits proof={}B calldata={}B prove={prove_ms}ms",
+         conjectured={security}bits proven(ldr/udr)={}/{}bits proof={}B calldata={}B prove={prove_ms}ms",
+        proven.ldr_bits(),
+        proven.udr_bits(),
         calldata.len() - 8,
         calldata.len()
     );

@@ -1,8 +1,8 @@
 //! Keccak-256 hasher for Winterfell.
 //!
 //! Inside PolkaVM the hash is computed by pallet-revive's `hash_keccak_256` host function,
-//! which is charged a flat weight plus a per-byte fee instead of the ~60% of all executed
-//! instructions that an in-VM Keccak-f permutation costs. Off-chain (the prover) the same
+//! which is charged a flat weight plus a per-byte fee. Done inside the VM instead, Keccak-f
+//! accounts for roughly 63% of all executed instructions (see the README). Off-chain (the prover) the same
 //! function comes from the `sha3` crate, so both sides compute identical digests.
 
 use alloc::vec::Vec;

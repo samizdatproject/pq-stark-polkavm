@@ -15,6 +15,7 @@ use winter_air::{
 pub use winter_air::{BatchingMethod, FieldExtension, ProofOptions};
 pub use winter_math::{FieldElement, fields::f64::BaseElement};
 
+#[cfg(not(feature = "sha3-in-vm"))]
 mod keccak;
 
 /// Hash used for Merkle commitments and Fiat-Shamir. By default Keccak-256 via the

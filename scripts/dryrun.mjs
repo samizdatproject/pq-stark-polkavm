@@ -5,7 +5,7 @@
 // Uses ReviveApi_instantiate (a read-only runtime API call): it uploads the blob in a throw-away
 // overlay and runs its constructor, which verifies the proof passed as constructor data. Nothing
 // is signed or submitted. <origin> is any account that is mapped in pallet-revive and holds
-// ~0.1 KSM, because the dry-run checks that the code upload deposit could be paid. The run is
+// >= ~0.2 KSM, because the dry-run checks that the code upload deposit could be paid. The run is
 // repeated with empty data to separate the verification cost from the constructor overhead.
 import { readFileSync } from 'node:fs';
 import { ApiPromise, WsProvider } from '@polkadot/api';
