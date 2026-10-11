@@ -189,6 +189,10 @@ ORIGIN=<your mapped account> ./scripts/bench.sh
 * There is no Solidity-compatible ABI, and the statement is a toy (Fibonacci).
 * Proofs larger than 128 KiB need chunked upload. That case is not reached here.
 
+## How this was built
+
+This spike was developed with AI assistance (Claude Code). I reviewed all of the code and can explain it, and the work was independently reviewed before publication. Every number in this README comes from the scripts above and can be reproduced against the live runtime.
+
 ## License
 
 Dual-licensed under MIT ([LICENSE-MIT](LICENSE-MIT)) or Apache-2.0
