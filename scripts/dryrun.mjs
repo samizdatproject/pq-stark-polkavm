@@ -32,5 +32,8 @@ for (const [name, r] of [['empty constructor', empty], ['verify proof', full]]) 
 }
 const d = (k) => full.weightConsumed[k] - empty.weightConsumed[k];
 const out = full.result.ok?.result;
-console.log(`verification only: ref_time ${d('refTime').toExponential(3)}, returned ${out?.data} (revert: ${out ? (out.flags.bits & 1) === 1 : 'n/a'})`);
+const status = out
+  ? `returned ${out.data} (revert: ${(out.flags.bits & 1) === 1})`
+  : `failed: ${JSON.stringify(full.result.err)} (e.g. origin cannot pay the upload deposit)`;
+console.log(`verification only: ref_time ${d('refTime').toExponential(3)}, ${status}`);
 await api.disconnect();

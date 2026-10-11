@@ -36,7 +36,7 @@ the pinned toolchain on aarch64-darwin produced this hash; other hosts have not 
 * **Host calls** counts every host function call. In the keccak builds all but 4 are
   `hash_keccak_256`; the other 4 are call-data reads and the return.
 * **Live dry-run** is measured. It calls `ReviveApi_instantiate` on Kusama Asset Hub (spec
-  2,003,002, blocks #22,448,507 to #22,448,582, 2026-10-11) with the blob and proof as
+  2,003,002, blocks #22,449,427 to #22,449,506, 2026-10-11) with the blob and proof as
   constructor data, and reports `weightConsumed` minus the same call with empty data.
 * **Local estimate** comes from `host run`. It runs the blob in polkavm 0.33.1 (the
   runtime's version) with pallet-revive's settings, then applies the runtime's weights. It
@@ -82,6 +82,8 @@ uses the BN254 precompiles. It is deployed on Polkadot Asset Hub at
 * Groth16 call data is 356 bytes; STARK call data is 25.8 KB (about 70x).
 * The Groth16 dry-run uses curve generators as the proof. They are valid points, so the full
   pairing check runs; it returns `false`, which costs the same as a valid proof.
+* zkattest's toy-circuit verifier (`0x4fa8678f…e468`, 1 public input) measures 1.867e10 the
+  same way, so the pairing check dominates.
 * zkattest's README records about 3.93e9 ref_time. I could not reproduce that against the
   current runtime, and the figures here supersede it.
 * Kusama Asset Hub has not yet enacted fellowship release v2.5.0. That release's Kusama
